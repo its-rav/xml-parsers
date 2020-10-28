@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.w3c.dom.Node;
 import parsers.DOMParser;
 
 /**
@@ -24,10 +25,23 @@ public class ParsersDemo {
         try {
             // TODO code application logic here
             String xmlFName="students.xml";
+            
             Path p= Paths.get(xmlFName);
             String path=p.toAbsolutePath().toString();
             DOMParser dp=new DOMParser(path);
-            System.out.println(dp.searchStudentLikeFirstName("asd"));
+            
+            Node rs=dp.searchFirstStudentLikeFirstName("u");
+            System.out.println("Search:"+rs.getChildNodes().item(1).getAttributes().getNamedItem("firstname").getNodeValue()+".");
+            
+            boolean result=dp.createStudent(4,"fname","lname",12.0,"password","username");
+            System.out.println("Create:"+result);
+            
+            dp.SaveChanges(path);
+            boolean delResult=dp.removeStudent(4);
+            System.out.println(delResult);
+            
+            dp.SaveChanges(path);
+            
         } catch (Exception ex) {
             Logger.getLogger(ParsersDemo.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -1,25 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<class>
-   <student id = "1">
-			asdasdasdsad
-      <firstname test="asdasd">            Vinh
-	  
-	  </firstname>
-      <lastname>Phan</lastname>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><class>
+   <student id="1">
+	  <name firstname="Vinh" lastname="Phan"/>
+	  <username>vphan</username>
+	  <password>123</password>
       <marks>85</marks>
    </student>
     
-   <student id = "2">
-      <firstname>Hoa</firstname>
-      <lastname>Nguyen</lastname>
+   <student id="2">
+	  <name firstname="Hoa" lastname="Nguyen"/>
+	  <username>nguyenhoa</username>
+	  <password>456</password>
       <marks>95</marks>
    </student>
     
-   <student id = "3">
-      <firstname>Phu</firstname>
-      <lastname>Tran</lastname>
+   <student id="3">
+	  <name firstname="Phu" lastname="Tran"/>
+	  <username>tranphu</username>
+	  <password>789</password>
+      <marks>90</marks>
+   </student>
+   <student>
+	  <name firstname="Phu" lastname="Tran"/>
+	  <username>tranphu</username>
+	  <password>789</password>
       <marks>90</marks>
    </student>
 </class>
-
