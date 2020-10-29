@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><class>
+<class>
    <student id="1">
 	  <name firstname="Vinh" lastname="Phan"/>
 	  <username>vphan</username>
@@ -14,12 +14,6 @@
    </student>
     
    <student id="3">
-	  <name firstname="Phu" lastname="Tran"/>
-	  <username>tranphu</username>
-	  <password>789</password>
-      <marks>90</marks>
-   </student>
-   <student>
 	  <name firstname="Phu" lastname="Tran"/>
 	  <username>tranphu</username>
 	  <password>789</password>

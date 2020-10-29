@@ -6,7 +6,9 @@
 package parsers;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -103,10 +105,36 @@ public class DOMParser {
 
         return true;
     }
+    public boolean updateStudent(int id, String fname, String lname, double mark, String password, String username) {
+        Node student=findStudentById(id);
+        if (student == null) {
+            return false;
+        }
+        
+        NodeList studentChildren=student.getChildNodes();
+        for(int i=0;i<studentChildren.getLength();i++){
+            Node currentNode=studentChildren.item(i);
+            if(currentNode.getNodeName().equals("name")){
+                currentNode.getAttributes().getNamedItem("firstname").setNodeValue(fname);
+                currentNode.getAttributes().getNamedItem("lastname").setNodeValue(lname);
+            }else if(currentNode.getNodeName().equals("mark")){
+                currentNode.setTextContent(mark+"");
+            }else if(currentNode.getNodeName().equals("password")){
+                currentNode.setTextContent(password);
+            }else if(currentNode.getNodeName().equals("username")){
+                currentNode.setTextContent(username);
+            }
+        }
+        return true;
+    }
+    
 
-    public void SaveChanges(String filePath) throws TransformerConfigurationException, TransformerException {
+    public void SaveChanges(String filePath,boolean indent) throws TransformerConfigurationException, TransformerException, IOException {
         TransformerFactory tf = TransformerFactory.newInstance();
         Transformer trans = tf.newTransformer();
+        trans.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+        trans.setOutputProperty(OutputKeys.INDENT, indent?"yes":"no");
+        trans.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
         DOMSource ds = new DOMSource(this.document);
         File file = new File(filePath);
         StreamResult sr = new StreamResult(file);

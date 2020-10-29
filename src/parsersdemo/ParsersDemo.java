@@ -31,16 +31,20 @@ public class ParsersDemo {
             DOMParser dp=new DOMParser(path);
             
             Node rs=dp.searchFirstStudentLikeFirstName("u");
-            System.out.println("Search:"+rs.getChildNodes().item(1).getAttributes().getNamedItem("firstname").getNodeValue()+".");
+            System.out.println("DOM-Search:"+rs.getChildNodes().item(1).getAttributes().getNamedItem("firstname").getNodeValue()+".");
             
             boolean result=dp.createStudent(4,"fname","lname",12.0,"password","username");
-            System.out.println("Create:"+result);
+            dp.SaveChanges(path.replace(".xml", "1.xml"),true);
+            System.out.println("DOM-Create:"+result);
             
-            dp.SaveChanges(path);
+            boolean updateResult=dp.updateStudent(2,"fname","lname",12.0,"password","username");
+            dp.SaveChanges(path.replace(".xml", "2.xml"),true);
+            System.out.println("DOM-Update:"+updateResult);
+            
             boolean delResult=dp.removeStudent(4);
-            System.out.println(delResult);
+            dp.SaveChanges(path.replace(".xml", "3.xml"),true);
+            System.out.println("DOM-Delete:"+delResult);
             
-            dp.SaveChanges(path);
             
         } catch (Exception ex) {
             Logger.getLogger(ParsersDemo.class.getName()).log(Level.SEVERE, null, ex);
